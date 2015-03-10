@@ -21,20 +21,16 @@ This package is released so that others can reproduce the experiments in the pap
 INSTALLATION
 ------------
 
-Go to directory src/ and type make to compile. The executables will be stored in the directory bin/
+Go to directory src/ and type `make` to compile. The executables will be stored in the directory bin/
 
 USAGE
 -----
 
 Typing
    
-  `bin/mpu`
+  `bin/solve_limid`
    
-from the project main directory will run show usage on how to run kPU.
-
-The chain diagrams used in the experiments in the paper are in the compressed file chain.tar.gz inside the directory limids.
-
-The command above reads limids in a special format described next.
+from the project main directory will show usage on how to run kPU. This command reads limids in a special format described in next section.
 
 FILE FORMAT
 -----------
