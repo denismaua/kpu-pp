@@ -659,7 +659,7 @@ namespace msp {
     // process header
     std::cin >> str;
     // skip possible C-style comment block at beginning
-    if (str[0] == '/' && str[1] == '*') { while(str[0] != '*' or str[1] != '/') std::cin >> str; std::cin >> str; }
+    if (str[0] == '/' && str[1] == '*') { while(str.size()<2 || str[str.size()-2] != '*' || str[str.size()-1] != '/') std::cin >> str; std::cin >> str; }
     if (str.compare("LIMID") != 0) 
       {
 	std::cerr << "ERROR! Expected 'LIMID' file header, found: " << str << std::endl;
