@@ -45,11 +45,11 @@ int main(int argc, char* argv[]) {
   ifstream input;
   streambuf* orig_cin = 0;
   if (argc < 3) {
-    cerr << red << "Usage: "<< def << argv[0] << " model k [verbosity]" << endl;
-    cerr << "   - model is an string specifying the filename of a LIMID format." << endl;
-    cerr << "   - k is an integer specifying the size of the neighborhood in local search" << endl;
+    cerr << red << "Usage: "<< def << argv[0] << blue << " model k [verbosity]" << def << endl;
+    cerr << "   -" <<  blue << " model" << def << " is an string specifying the filename of a LIMID format." << endl;
+    cerr << "   -" << blue << " k" << def << " is an integer specifying the size of the neighborhood in local search" << endl;
     cerr << "         [use k=1 for SPU and k=n, n the number of decision variables for MPU]" << endl;
-    cerr << "   - verbosity is an optional integer specifying the level of feedback"<< endl;
+    cerr << "   -" << blue << " verbosity" << def << " is an optional integer specifying the level of feedback"<< endl;
     return 0;
   }
   if (argc > 3) verbose = atoi(argv[3]);
@@ -78,8 +78,9 @@ int main(int argc, char* argv[]) {
   start = get_utime();
   Limid::solution_t sol = L.solve(k,verbose); // solve limid
   end = get_utime();
-  cout << green;
+  cout << blue;
   if (verbose) printf("\n%40s\t%20s\t%10s\t%10s\t%15s\t%15s\t%20s\t%20s\n", "filename", "method", "# chance", "# decision", "# iters", "# tables", "runtime", "value");
+  cout << green;
   printf( "%40s\t%20s\t%10d\t%10d\t%15d\t%15d\t%20s\t%20s\n", argv[1], sol.method.c_str(), L.num_chance_nodes(), L.num_decision_nodes(), sol.num_iters, sol.num_tables, to_string(end-start).c_str(), to_string(sol.value).c_str() );
   cout << def;
   return 0;

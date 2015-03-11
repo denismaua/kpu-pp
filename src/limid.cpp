@@ -142,7 +142,7 @@ namespace msp {
     while (E>prevE) // iterate until convergence
       {
     	prevE=E;
-	if (verbosity) std::cout << "it:"<< it << std::endl;
+	if (verbosity) std::cout << "it:"<< it << "\tincumbent: " << E << std::endl << std::flush;
     	// do 1-neighborhood search
 	for (unsigned i=N+M-1; i>=N; --i)
 	  {
@@ -212,22 +212,22 @@ namespace msp {
     // reset maximum number of tables in a valuation
     Valuation::max_tables = 0;
     // evaluate initial strategy
-    Valuation r = variable_elimination(order, vals, verbosity);
-    std::pair<double, std::pair<unsigned,unsigned> > x = r.maxr(); // find maximum in case there are more than one table
+    Valuation r = variable_elimination(order, vals, verbosity?verbosity-1:verbosity);
+    std::pair<double, std::pair<unsigned,unsigned> > x = r.maxr(); // find maximum in case there is more than one table
     double E=x.first;
     double prevE=-INFINITY; 
     it=0;
     while (E>prevE) // iterate until convergence
       {
     	prevE=E;
-	if (verbosity) std::cout << "it:"<< it << std::endl;
+	if (verbosity) std::cout << "it:"<< it << "\tincumbent: " << E << std::endl << std::flush;
     	// do 1-neighborhood search
 	for (unsigned i=N+M-1; i>=N; --i)
 	  {
 	    // find best policy for i-th decision variable 
 	    vals[i] = p_space[i-N];
-	    Valuation r = variable_elimination(order, vals, verbosity);
-	    std::pair<double, std::pair<unsigned,unsigned> > x = r.maxr(); // find maximum in case there are more than one table
+	    Valuation r = variable_elimination(order, vals, verbosity?verbosity-1:verbosity);
+	    std::pair<double, std::pair<unsigned,unsigned> > x = r.maxr(); // find maximum in case there is more than one table
 	    if (x.first > E)
 	      { // found improving strategy
 		E = x.first;
@@ -438,7 +438,7 @@ namespace msp {
     // SEARCH
     
     // evaluate initial strategy
-    Valuation r = variable_elimination(order, vals, verbosity);
+    Valuation r = variable_elimination(order, vals, verbosity?verbosity-1:verbosity);
     // interpret result to get locally optimal strategy
     std::pair<double, std::pair<unsigned,unsigned> > x = r.maxr();
     double E = x.first;
@@ -448,7 +448,7 @@ namespace msp {
     while (E>prevE) // iterate until convergence
       {
     	prevE=E;
-	if (verbosity) std::cout << "it:"<< it << std::endl;
+	if (verbosity) std::cout << "it:"<< it << "\tincumbent: " << E << std::endl << std::flush;
     	// do k-neighborhood stochastic search
 	std::default_random_engine generator;
 	std::uniform_int_distribution<int> distribution(0,M-1);
@@ -460,9 +460,9 @@ namespace msp {
 	    ne.insert(i); 
 	    while(ne.size() < k) ne.insert( distribution(generator) );
 	    for (unsigned j: ne) vals[N+j] = p_space[j];
-	    if (verbosity) { std::cout << "neighborhood: "; for (unsigned j: ne) std::cout << j << " "; std::cout << std::endl; } // print out search dimensions
+	    if (verbosity>1) { std::cout << "neighborhood: "; for (unsigned j: ne) std::cout << j << " "; std::cout << std::endl; } // print out search dimensions
 	    // run variable elimination
-	    Valuation r = variable_elimination(order, vals, verbosity);
+	    Valuation r = variable_elimination(order, vals, verbosity?verbosity-1:verbosity);
 	    // interpret result to get locally optimal strategy
 	    std::pair<double, std::pair<unsigned,unsigned> > x = r.maxr();
 	    if (x.first > E)
