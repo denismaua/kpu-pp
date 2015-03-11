@@ -21,7 +21,7 @@ This package is released so that others can reproduce the experiments in the pap
 INSTALLATION
 ------------
 
-Go to directory src/ and type `make` to compile. The executables will be stored in the directory bin/
+Type `make` from a command line in the project main  directory to compile. The executables will be stored in the directory `bin/`
 
 USAGE
 -----
@@ -46,6 +46,6 @@ The diagrams can be specified in the following format inspired by UAI File Forma
   *  - CPTi is NUMVALUES VALUE1 ... VALUE(NUMVALUES), with NUMVALUES numeric values describing the conditional probability values P(C_ID|PA_ID), arranged such that the least significant value (the one that increases the fastest) is C_ID and the most signficant value (the one that increases the slowest) is the value of the rightmost parent.
   *  - UTILi is NUMVALUES VALUE1 ... VALUE(NUMVALUES), with NUMVALUES numeric values specifying the utility function U(PA_ID) with least significant digit denoting the value of the leftmost parent.
 
- Linebreaks are discarded as white spaces, thus they can be used to improve readalibity.
+ Linebreaks are discarded as white spaces, thus they can be used to improve readalibity. It is possible to have a C-style comment block (i.e., a block enclosed by /* and */) at the beginning (before LIMID appears); this will be simply ignored.
  
  See the examples in directory limids.

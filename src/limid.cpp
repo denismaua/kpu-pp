@@ -17,7 +17,7 @@
 // along with MSP.  If not, see <http://www.gnu.org/licenses/>.
 
 /** Describes Limid class implementation */
-#define VERBOSITY 0
+#define VERBOSITY 0 // change this to 1 or higher to increase the verbosity of model loading (useful for debugging)
 #define CHAIN 0
 
 #include <iostream>
@@ -649,14 +649,17 @@ namespace msp {
     return sol;
   }
 
-  /** Load model from file in UAI format. Read input from stdin --
+  /** Load model from file in LIMID format. Read input from stdin --
    * redirect cin to read from file.
    */
   void Limid::load()
   {
     std::string str;
     // assume cin is set accordingly
-    std::cin >> str; // header
+    // process header
+    std::cin >> str;
+    // skip possible C-style comment block at beginning
+    if (str[0] == '/' && str[1] == '*') { while(str[0] != '*' or str[1] != '/') std::cin >> str; std::cin >> str; }
     if (str.compare("LIMID") != 0) 
       {
 	std::cerr << "ERROR! Expected 'LIMID' file header, found: " << str << std::endl;
@@ -664,6 +667,11 @@ namespace msp {
       }
     // read number of variables
     std::cin >> N;        std::cin >> M;        std::cin >> O;    
+    if (VERBOSITY > 1) {
+      std::cout << "N:" << N << "\tM:" << M << "\tO:" << O << std::endl;
+      std::cout << std::flush;
+    }
+
     // allocate memory
     _variables.reserve(N+M+O);    _factors.reserve(N+M+O);
 
@@ -694,9 +702,11 @@ namespace msp {
 	_variables.emplace_back( 1, s );
       }
 
-    if (VERBOSITY > 1)
+    if (VERBOSITY > 1) {
       for (auto v: _variables)
 	std::cout << v << std::endl;
+      std::cout << std::flush;
+    }
 
     // read parent sets 
     for (unsigned i = 0; i < N+M+O; ++i) 
@@ -721,6 +731,9 @@ namespace msp {
 	  _factors.emplace_back( scope, 1.0/_variables[i].size() ); // initialize policies with uniform strategy
 	else
 	  _factors.emplace_back( scope );
+	if (VERBOSITY > 1) {
+	  std::cout << _factors[i] << std::endl << std::flush;
+	}
       }
 	
 
