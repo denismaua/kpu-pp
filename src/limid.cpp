@@ -35,7 +35,7 @@
 #include "inference.h"
 #include "setfactor.h"
 #include "valuation.h"
-
+//#include "dag.h" 
 #include "operations.h"
 
 namespace msp {
@@ -60,12 +60,20 @@ namespace msp {
       } else {  // otherwise find good ordering using min-fill
 
       // TO-DO: Implement ordering that combines reverse toposort and minfill
-      // DAG d
+      // DAG d;
       // for (auto& v: _variables) d.add_node(v);
       // for (auto f: _factors) 
-      //  for (unsigned i=1; i<f.width(); ++i) d.add_arc(*f.var_at(i),f.var_at(0));
-      // std::cout << d << std::endl
-      // order.assign( d.topsort() );
+      //  for (unsigned i=1; i<f.width(); ++i) d.add_arc(*f.var_at(i),*f.var_at(0));
+      // // std::cout << d << std::endl
+      // std::vector<Variable> topord = d.topsort();
+      // std::reverse(topord.begin(),topord.end());
+      // for (unsigned j=0, i=0; j<topord.size(); ++j)
+      // 	if (topord[j].name()[0] == 'V') { order[i] = topord[j]; ++i; }
+      // for (unsigned j=0, i=O; j<topord.size(); ++j)
+      // 	if (topord[j].name()[0] == 'D') { order[i] = topord[j]; ++i; }
+      // for (unsigned j=0, i=M+O; j<topord.size(); ++j)
+      // 	if (topord[j].name()[0] == 'C') { order[i] = topord[j]; ++i; }
+      // return order;
 
       // first add value variables in given order
       for (unsigned i=0;i<O;++i)

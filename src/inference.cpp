@@ -148,6 +148,7 @@ namespace msp {
 
     std::forward_list<Valuation> flist(vals.begin(),vals.end()); // pool of valuations
     std::forward_list<Valuation> bucket;
+    unsigned it=0;
     for (auto var: variables)
       {
 	if (verbosity) std::cout << "-" << var << std::endl;
@@ -182,6 +183,7 @@ namespace msp {
 	  }
 	  bucket.clear();
 	}
+	if (verbosity) std::cout << ++it << " eliminated, " << variables.size()-it << " remainining." << std::endl;
       }    
     // generate result by multiplying all remaining valuations in the pool
     Valuation p; // product-identity valuation

@@ -15,7 +15,7 @@ CC=g++
 CCFLAGS=-O3 -std=c++11 $(INC)
 #-Wno-deprecated -Wall -W -Wextra -fpic -O3 -static $(INC)
 # Source files
-SRCS=utils.cpp variable.cpp domain.cpp factor.cpp trieset.cpp setfactor.cpp valuation.cpp operations.cpp io.cpp graph.cpp inference.cpp limid.cpp
+SRCS=utils.cpp variable.cpp domain.cpp factor.cpp trieset.cpp setfactor.cpp valuation.cpp operations.cpp io.cpp graph.cpp inference.cpp limid.cpp 
 # Object files
 OBJS=$(subst .cpp,.o,$(SRCS))
 # Binary files

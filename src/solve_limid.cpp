@@ -64,7 +64,7 @@ int main(int argc, char* argv[]) {
   L.load(); // read model from file or std_in
   if (verbose) 
     { 
-      cout << "Model loaded: " << green << L.num_chance_nodes() << def << " chance variables, " << green << L.num_decision_nodes() << def << " decision nodes, and " << green << L.num_value_nodes() << def << " value nodes. " << endl;
+      cout << "Model loaded: " << blue << L.num_chance_nodes() << def << " chance variables, " << blue << L.num_decision_nodes() << def << " decision nodes, and " << blue << L.num_value_nodes() << def << " value nodes. " << endl;
       //t.stop(); t.report(); t.resume();
     }
 
@@ -74,14 +74,18 @@ int main(int argc, char* argv[]) {
     k = L.num_decision_nodes();
   }
 
+  string filename(argv[1]);
+  if (filename.size()>20)
+    filename.assign( string("...")+filename.substr(filename.size()-17) );
+
   double start, end; // time measurement
   start = get_utime();
   Limid::solution_t sol = L.solve(k,verbose); // solve limid
   end = get_utime();
   cout << blue;
-  if (verbose) printf("\n%40s\t%20s\t%10s\t%10s\t%15s\t%15s\t%20s\t%20s\n", "filename", "method", "# chance", "# decision", "# iters", "# tables", "runtime", "value");
+  if (verbose) printf("\n%20s\t%10s\t%10s\t%10s\t%10s\t%15s\t%20s\t%20s\n", "filename", "method", "# chance", "# decision", "# iters", "# tables", "runtime", "value");
   cout << green;
-  printf( "%40s\t%20s\t%10d\t%10d\t%15d\t%15d\t%20s\t%20s\n", argv[1], sol.method.c_str(), L.num_chance_nodes(), L.num_decision_nodes(), sol.num_iters, sol.num_tables, to_string(end-start).c_str(), to_string(sol.value).c_str() );
+  printf( "%20s\t%10s\t%10d\t%10d\t%10d\t%15d\t%20s\t%20s\n", filename.c_str(), sol.method.c_str(), L.num_chance_nodes(), L.num_decision_nodes(), sol.num_iters, sol.num_tables, to_string(end-start).c_str(), to_string(sol.value).c_str() );
   cout << def;
   return 0;
 }
