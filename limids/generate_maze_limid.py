@@ -7,10 +7,12 @@ if len(sys.argv) < 2:
     print "Usage:", sys.argv[0], "H, where H is a positive integer specifying the planning horizon (number of steps)."
     exit(0)
 H = int(sys.argv[1])
+A = 21 # position sA
+B = 25 # position sB
 states = [1, 2, 3, 4, 5, 9, 14, 13, 12, 17, 16, 21, 22, 19, 20, 24, 25] # possibility space of S
 actions = ['r','n','e','s','w'] # possibility space of D
 start = 1 # initial state
-VARS =  ['S','N','E','SO','W','A','B','X1','X2','X3','X4','X5','X6','X7','X8','X9','X10','X11','X12','X13','X14','X15','X16']
+VARS =  ['S',         'N','E','SO','W','A','B','X1','X2','X3','X4','X5','X6','X7','X8','X9','X10','X11','X12','X13','X14','X15','X16']
 sizeC = [ len(states),  2,  2,   2,  2,  2,  2,   5,   5,   5,   5,   5,   5,   5,   5,   5,    5,    5,    5,    5,    5,    5,    5]
 print "/**********************"
 print " * MAZE LIMID"
@@ -20,9 +22,6 @@ print " * START:", start
 # (s,s',action) -> prob
 #          1 2 3 4 5       6 7 8 9 10
 grid = [[0,0,0,0,0,0,0],[0,1,1,1,1,1,0],[0,0,0,0,1,0,0],[0,0,1,1,1,0,0],[0,1,1,0,1,1,0],[0,1,1,0,1,1,0],[0,0,0,0,0,0,0]]
-# goals
-A = 9 #21
-B = 25
 for y in range(7):
     print " *",
     for x in range(7):
@@ -239,7 +238,7 @@ for t in range(H):
             for s in states:
                 if a=='n' and b=='n' and s==B: # visited B first
                     print 0.25,
-                elif a=='n' and b=='n' and s==A: # visites A first
+                elif a=='n' and b=='n' and s==A: # visited A first
                     print 0.5,
                 elif a=='y' and b=='n' and s==B: # visited A then B
                     print 1.0,
