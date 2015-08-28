@@ -10,11 +10,11 @@ If you use this code in an academic work, please cite any of the the publication
 
 As by-products, this package also implements the strategy selection algorithms described in
 
->    D.D. Maua, C.P. de Campos and M. Zaffalon (2012), _Solving Limited Memory Influence Diagrams_, Journal of Artificial Intelligence Research 44, pp. 97-140. 
+>    D.D. Maua, C.P. de Campos and M. Zaffalon (2012), _Solving Limited Memory Influence Diagrams_. Journal of Artificial Intelligence Research 44, pp. 97-140. 
 
 as well as a variable elimination scheme for posterior probability computations in Bayesian networks represented in the UAI file format. With some minimal effort it is possible to use this code to implement the algorithms for MAP and credal network inferences described in
 
->   D.D. Maua and C.P. de Campos (2012), Anytime Marginal MAP Inference. In _Proceedings of the 28th International Conference on Machine Learning (ICML), pp. 1471–1478.
+>   D.D. Maua and C.P. de Campos (2012), Anytime Marginal MAP Inference. In _Proceedings of the 28th International Conference on Machine Learning_, pp. 1471–1478.
 >   D.D. Maua, C.P. de Campos and M. Zaffalon (2012), _Updating Credal Networks is Approximable in Polynomial Time_. International Journal of Approximate Reasoning 53(8), pp. 1183–1199.
 
 LICENSE
