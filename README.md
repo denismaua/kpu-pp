@@ -4,6 +4,7 @@ k-Neighborhood Policy Updating for Influence Diagrams
 This is a C++ implementation of the *k-neighborhood local search algorithms for selecting strategies in (limited memory) influence diagrams* described in
 
 >    D.D. Maua and F.G. Cozman (2014), Speeding Up k-Neighborhood Local Search in Limited Memory Influence Diagrams. In _Proceedings of the Seventh European Conference on Probabilistic Graphical Models_, LNAI 8754, pp. 334-349.
+
 >    D.D. Maua and F.G. Cozman (2015), _Fast local search methods for solving limited memory influence diagrams_. International Journal of Approximate Reasoning (in press).    
     
 If you use this code in an academic work, please cite any of the the publications above.
@@ -15,6 +16,7 @@ As by-products, this package also implements the strategy selection algorithms d
 as well as a variable elimination scheme for posterior probability computations in Bayesian networks represented in the UAI file format. With some minimal effort it is possible to use this code to implement the algorithms for MAP and credal network inferences described in
 
 >   D.D. Maua and C.P. de Campos (2012), Anytime Marginal MAP Inference. In _Proceedings of the 28th International Conference on Machine Learning_, pp. 1471–1478.
+
 >   D.D. Maua, C.P. de Campos and M. Zaffalon (2012), _Updating Credal Networks is Approximable in Polynomial Time_. International Journal of Approximate Reasoning 53(8), pp. 1183–1199.
 
 LICENSE
