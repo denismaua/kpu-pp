@@ -8,6 +8,7 @@ OBJDIR = src
 all: build
 
 build:
+	mkdir -p $(EXEDIR)
 	$(MAKE) -C $(SRCDIR)
 
 solver:
