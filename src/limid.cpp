@@ -625,7 +625,13 @@ namespace msp {
     sol.method = std::to_string(k)+std::string("PU");
     unsigned iter,numtables;
     std::vector<Variable> order = find_order(verbosity);
-    if (k==1) 
+    if (k==0) {
+      sol.num_iters = 0;
+      sol.value = 0.0;
+      sol.method = std::string("--");
+      sol.num_tables = 0;
+      return sol;
+    } else if (k==1) 
       if (O > 1)
 	sol.value = SPU2(order,sol.num_iters,sol.num_tables,verbosity);
       else
